@@ -18,7 +18,7 @@ class SearchAgentService:
         while run.status in [RunStatus.QUEUED, RunStatus.IN_PROGRESS, RunStatus.REQUIRES_ACTION]:
             time.sleep(1)
             run = self.project_client.agents.get_run(thread_id=thread.id, run_id=run.id)
-            print(f"Current run status1: {run.status}")
+            logger.info(f"Current run status1: {run.status}")
 
             if run.status == RunStatus.REQUIRES_ACTION:
                 tool_calls = run.required_action.submit_tool_outputs.tool_calls
