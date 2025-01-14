@@ -84,7 +84,7 @@ class SearchAgentService:
         )
         return self.project_client.agents.create_run(thread_id=thread.id, assistant_id=agent.id)
 
-    def execute_tool_calls(self, tool_calls):
+    tool_outputs = [self.project_client.tools.execute_tool_call(tool_call) for tool_call in tool_calls]
         print(f"Requires more information to continue: {tool_calls}")
 
     def get_assistant_responses(self, thread: AgentThread):
